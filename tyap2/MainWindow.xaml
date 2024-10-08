@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tyap2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+ Title="MainWindow" Height="550" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" x:Name="ST1">
+                <Button x:Name="ManualInputButton" Click="ManualInputButton_Click" Width="150px" HorizontalAlignment="Left" Margin="5 0 0 0">Ручной ввод данных</Button>
+                <Button x:Name="FileInputButton" Click="FileInputButton_Click" Width="150px" HorizontalAlignment="Left" Margin="5 0 0 0">Загрузить из файла</Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="0" x:Name="ST2">
+                <Label  HorizontalAlignment="Right" Width="0">Длина алфавита:</Label>
+                <TextBox  Height="25" x:Name="AlphabetLengthInput" Margin="5 0" Width="0"></TextBox>
+                <Label HorizontalAlignment="Right">Число правил:</Label>
+                <TextBox Height="25" x:Name="StatesNumInput" Width="100px" Margin="5 0"></TextBox>
+                <Label> Алфавит (через пробел):</Label>
+                <TextBox Width="150px" x:Name="AlphabetSymbolsInput" Margin="5 0" Height="25px"> </TextBox>
+                
+                <Button Height="25" x:Name="SettingsApply" Click="SettingsApply_Click">Применить</Button>
+                <TextBlock x:Name="ErrorTextbox" Margin="5 0 0 0"></TextBlock>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" x:Name="ST3" Height="0">
+                <Label>
+                    Проверяемая строка: 
+                </Label>
+                <TextBox x:Name="CheckStringInput" Width="300px" Height="25px"></TextBox>
+                <Button x:Name="CalcButton" Click="CalcButton_Click" Width="100px" HorizontalAlignment="Left" Margin="5 0 0 0">Проверить</Button>
+            </StackPanel>
+            <StackPanel >
+                <StackPanel x:Name="MainStackPanel" Orientation="Vertical" Margin="10"/>
+            </StackPanel>
+        </StackPanel>
+
     </Grid>
 </Window>
