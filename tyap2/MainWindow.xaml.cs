@@ -29,7 +29,9 @@ namespace tyap2
         int StatesNum = 0;
         int AlphabetLength = 0;
         string[] AlphabetArray = new string[0];
-        private Dictionary<TextBox, TextBox> RulesDict = new Dictionary<TextBox, TextBox>();
+        private List<TextBox> RulesDict = new List<TextBox>();
+        List<string> FirstStageRule = new List<string>();
+        List<string> AlphabetRule = new List<string>();
         bool s1 = false;
         bool s2 = false;
         List<string> NonTerminalSymb = new List<string>();
@@ -72,13 +74,15 @@ namespace tyap2
                     var stackPanel = new StackPanel { Orientation = Orientation.Horizontal };
 
                     var textBox1 = new TextBlock { Width = 30, Name = $"D{i + 1}1"};
-                    Console.WriteLine(AlphabetArray[j]);
                     textBox1.Text = i.ToString();
-                    var textBox2 = new TextBox { Width = 30, Name = $"D{i + 1}1", MaxLength = 1 };
+                    var textBox2 = new TextBlock { Width = 30, Name = $"D{i + 1}1"};
                     textBox2.Text = AlphabetArray[j];
                     var label1 = new Label { Content = "   " };
                     var label2 = new Label { Content = " -> " };
                     var textBox3 = new TextBox { Width = 30, Name = $"D{i + 1}2" };
+                    FirstStageRule.Add(i.ToString());
+                    AlphabetRule.Add(AlphabetArray[j].ToString());
+
 
                     stackPanel.Children.Add(textBox1);
                     stackPanel.Children.Add(label1);
@@ -89,7 +93,7 @@ namespace tyap2
                     MainStackPanel.Children.Add(stackPanel);
 
                     // Добавляем текстовые поля в словарь
-                    RulesDict.Add(textBox2, textBox3);
+                    RulesDict.Add(textBox3);
 
                 }
 
@@ -131,21 +135,33 @@ namespace tyap2
                 ErrorTextbox.Text = "пустой словарь";
                 return;
             }
-
+            if (StartStageInput.Text.Length == 0)
+            {
+                ErrorTextbox.Text = "пустое стартовое состояние";
+                return;
+            }
+            if (FinalStageInput.Text.Length == 0)
+            {
+                ErrorTextbox.Text = "пустое финальное состояние";
+                return;
+            }
+            
             AlphabetArray = AlphabetSymbolsInput.Text.Split(' ');
-
+            StartStage = StartStageInput.Text;
+            FinalStage = FinalStageInput.Text;
             AlphabetLength = AlphabetArray.Length;
 
             Console.WriteLine(StatesNum + " " + AlphabetSymbolsInput);
             CreateTextBoxes();
             s1 = true;
+            ST3.Height = 30;
         }
 
         private void ManualInputButton_Click(object sender, RoutedEventArgs e)
         {
             ST1.Height = 0;
             ST2.Height = 30;
-            ST3.Height = 30;
+            
             //вывести на экран интерфейс для добавления правил
         }
 
@@ -180,6 +196,21 @@ namespace tyap2
 
             } else
             {
+                for(int i = 0; i < AlphabetLength* StatesNum; i++)
+                {
+
+                    if (RulesDict[i].Text != "")
+                    {
+
+                        RulesDictStrings.Add(FirstStageRule[i] + SpecialSymbol + AlphabetRule[i], RulesDict[i].Text);
+                    }
+                    
+
+                }
+                foreach(var a in RulesDictStrings)
+                {
+                    Console.WriteLine(a.Key + " " + a.Value);
+                }
                 // берутся значения из инпутов
             }
 

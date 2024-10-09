@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:tyap2"
         mc:Ignorable="d"
- Title="MainWindow" Height="550" Width="800">
+ Title="MainWindow" Height="550" Width="850">
     <Grid>
         <Grid.ColumnDefinitions>
 
@@ -22,23 +22,30 @@
                 <Label  HorizontalAlignment="Right" Width="0">Длина алфавита:</Label>
                 <TextBox  Height="25" x:Name="AlphabetLengthInput" Margin="5 0" Width="0"></TextBox>
                 <Label HorizontalAlignment="Right">Число правил:</Label>
-                <TextBox Height="25" x:Name="StatesNumInput" Width="100px" Margin="5 0"></TextBox>
-                <Label> Алфавит (через пробел):</Label>
-                <TextBox Width="150px" x:Name="AlphabetSymbolsInput" Margin="5 0" Height="25px"> </TextBox>
+                <TextBox Height="25" x:Name="StatesNumInput" Width="30px" Margin="5 0"></TextBox>
+                <Label>Алфавит (через пробел):</Label>
+                <TextBox Width="150px" x:Name="AlphabetSymbolsInput" Margin="5 0" Height="25px"></TextBox>
+
+                <Label>Начальное состояние:</Label>
+                <TextBox Width="30px" x:Name="StartStageInput" Margin="5 0" Height="25px"></TextBox>
+                <Label>Конечное состояние:</Label>
+                <TextBox Width="30px" x:Name="FinalStageInput" Margin="5 0" Height="25px"></TextBox>
                 
                 <Button Height="25" x:Name="SettingsApply" Click="SettingsApply_Click">Применить</Button>
+                
                 <TextBlock x:Name="ErrorTextbox" Margin="5 0 0 0"></TextBlock>
             </StackPanel>
 
+
+            <StackPanel >
+                <StackPanel x:Name="MainStackPanel" Orientation="Vertical" Margin="10"/>
+            </StackPanel>
             <StackPanel Orientation="Horizontal" x:Name="ST3" Height="0">
                 <Label>
-                    Проверяемая строка: 
+                    Проверяемая строка:
                 </Label>
                 <TextBox x:Name="CheckStringInput" Width="300px" Height="25px"></TextBox>
                 <Button x:Name="CalcButton" Click="CalcButton_Click" Width="100px" HorizontalAlignment="Left" Margin="5 0 0 0">Проверить</Button>
-            </StackPanel>
-            <StackPanel >
-                <StackPanel x:Name="MainStackPanel" Orientation="Vertical" Margin="10"/>
             </StackPanel>
         </StackPanel>
 
