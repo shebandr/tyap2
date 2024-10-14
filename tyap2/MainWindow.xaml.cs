@@ -186,35 +186,45 @@ namespace tyap2
 
 
         }
-
+        private bool T = false;
         private void CalcButton_Click(object sender, RoutedEventArgs e)
         {
 
-
-            if (ST2.Height == 0)
+            if (T == false)
             {
+                if (ST2.Height == 0)
+                {
+
+                }
+                else
+                {
+                    for (int i = 0; i < AlphabetLength * StatesNum; i++)
+                    {
+
+                        if (RulesDict[i].Text != "")
+                        {
+
+                            RulesDictStrings.Add(FirstStageRule[i] + SpecialSymbol + AlphabetRule[i], RulesDict[i].Text);
+                        }
+
+
+                    }
+                    foreach (var a in RulesDictStrings)
+                    {
+                        Console.WriteLine(a.Key + " " + a.Value);
+                    }
+                    // берутся значения из инпутов
+                }
 
             } else
             {
-                for(int i = 0; i < AlphabetLength* StatesNum; i++)
-                {
-
-                    if (RulesDict[i].Text != "")
-                    {
-
-                        RulesDictStrings.Add(FirstStageRule[i] + SpecialSymbol + AlphabetRule[i], RulesDict[i].Text);
-                    }
-                    
-
-                }
-                foreach(var a in RulesDictStrings)
-                {
-                    Console.WriteLine(a.Key + " " + a.Value);
-                }
-                // берутся значения из инпутов
+                MainStackPanel.Children.Clear();
+                T = true;
             }
 
 
+
+            T = true;
 
 
 
@@ -228,7 +238,8 @@ namespace tyap2
             {
                 VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
                 Content = labelVar,
-                Height = 400
+                Height = 400,
+                Name = "TTTT"
             };
             MainStackPanel.Children.Add(scrollViewer);
 
